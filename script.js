@@ -11,9 +11,10 @@ function setup() {
 	cols = floor(width/w);
 	rows = floor(width/w);
 	frameRate(500);
+	noLoop();
 
-	for(var j = 0; j < rows; j++) {
-		for(var i = 0; i < cols; i++) {
+	for (var j = 0; j < rows; j++) {
+		for (var i = 0; i < cols; i++) {
 			var cell = new Cell(i,j);
 			grid.push(cell);
 		}
@@ -30,7 +31,7 @@ function draw() {
 
 	current.visited = true;
 	current.highlight();
-	//step 1
+		//step 1
 	var next = current.checkNeighbors();
 	if (next) {
 		next.visited = true;
@@ -44,6 +45,10 @@ function draw() {
 	} else if (stack.length > 0) {
 		current = stack.pop();
 	}
+
+	/*noStroke();
+	fill(0, 0, 255, 100);
+	rect(0,0,w,w);*/
 }
 
 function index(i,j) {
@@ -127,7 +132,7 @@ function removeWalls(a, b) {
 	if (x === 1) {
 		a.walls[3] = false;
 		b.walls[1] = false;
-		console.log(a);
+		//console.log(a);
 	} else if (x === -1) {
 		a.walls[1] = false;
 		b.walls[3] = false;
@@ -142,3 +147,31 @@ function removeWalls(a, b) {
 		b.walls[0] = false;
 	}
 }
+
+
+function keyPressed() {
+	if (keyCode === ENTER) {
+		loop();
+	} else if (keyCode === ESCAPE) {
+		noLoop();
+	}
+}
+
+/*function mousePressed() {
+	if (mouseButton == LEFT)
+		loop();
+	if (mouseButton == RIGHT)
+		noLoop();
+}*/
+/*----------------------*/
+/*function mouseClicked() {
+	loop();
+}*/
+/*----------------------*/
+/*function mousePressed() {
+	loop();
+}
+
+function mouseReleased() {
+	noLoop();
+}*/
