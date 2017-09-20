@@ -156,22 +156,3 @@ function keyPressed() {
 		noLoop();
 	}
 }
-
-/*function mousePressed() {
-	if (mouseButton == LEFT)
-		loop();
-	if (mouseButton == RIGHT)
-		noLoop();
-}*/
-/*----------------------*/
-/*function mouseClicked() {
-	loop();
-}*/
-/*----------------------*/
-/*function mousePressed() {
-	loop();
-}
-
-function mouseReleased() {
-	noLoop();
-}*/
