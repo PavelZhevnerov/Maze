@@ -1,0 +1,8 @@
+#canvas {
+	border: 3px double #000;
+	background-color: #fff;
+}
+
+#smile {
+	display: none;
+}
