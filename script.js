@@ -6,12 +6,17 @@ var current;
 
 var stack = [];
 
+var user;
+
 function setup() {
 	createCanvas(401, 401);
 	cols = floor(width/w);
 	rows = floor(width/w);
+
+	user = new User();
+
 	frameRate(500);
-	noLoop();
+	//noLoop();
 
 	for (var j = 0; j < rows; j++) {
 		for (var i = 0; i < cols; i++) {
@@ -46,9 +51,9 @@ function draw() {
 		current = stack.pop();
 	}
 
-	/*noStroke();
-	fill(0, 0, 255, 100);
-	rect(0,0,w,w);*/
+	//user.update();
+	user.show();
+
 }
 
 function index(i,j) {
@@ -56,6 +61,39 @@ function index(i,j) {
 		return -1;
 	}
 	return i + j * cols;
+}
+
+function User() {
+	this.x = 0;
+	this.y = 0;
+	this.xspeed = 0;
+	this.yspeed = 0;
+
+	this.dir = function (x, y) {
+		/*this.xspeed = x;
+		this.yspeed = y;*/
+
+		this.x += x*w;
+		this.y += y*w;
+
+		this.x = constrain(this.x, 0, width-w);
+		this.y = constrain(this.y, 0, height-w);
+	};
+
+	this.update = function () {
+
+		this.x = this.x + this.xspeed*w;
+		this.y = this.y + this.yspeed*w;
+
+		this.x = constrain(this.x, 0, width-w);
+		this.y = constrain(this.y, 0, height-w);
+
+	};
+
+	this.show = function () {
+		fill(255,0,0);
+		rect(this.x, this.y, w, w);
+	};
 }
 
 function Cell(i, j) {
@@ -150,9 +188,21 @@ function removeWalls(a, b) {
 
 
 function keyPressed() {
-	if (keyCode === ENTER) {
+	/*if (keyCode === ENTER) {
 		loop();
 	} else if (keyCode === ESCAPE) {
 		noLoop();
+	}*/
+
+	if (keyCode === UP_ARROW) {
+		user.dir(0, -1);
+	} else if (keyCode === DOWN_ARROW) {
+		user.dir(0, 1);
+	} else if (keyCode === LEFT_ARROW) {
+		user.dir(-1, 0);
+	} else if (keyCode === RIGHT_ARROW) {
+		user.dir(1, 0);
 	}
+
+	//redraw();
 }
