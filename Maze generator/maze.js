@@ -15,7 +15,7 @@ function setup() {
 
 	user = new User();
 
-	frameRate(500);
+	frameRate(10);
 	//noLoop();
 
 	for (var j = 0; j < rows; j++) {
@@ -64,8 +64,8 @@ function index(i,j) {
 }
 
 function User() {
-	this.x = 0;
-	this.y = 0;
+	this.x = 1;
+	this.y = 1;
 	this.xspeed = 0;
 	this.yspeed = 0;
 
@@ -92,7 +92,7 @@ function User() {
 
 	this.show = function () {
 		fill(255,0,0);
-		rect(this.x, this.y, w, w);
+		rect(this.x, this.y, w-1, w-1);
 	};
 }
 
